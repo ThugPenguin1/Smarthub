@@ -1,0 +1,419 @@
+"use client";
+
+/*
+ * =====================================================================
+ * FILE: contact.tsx — The Contact page (route: "contact", URL: #/contact)
+ * =====================================================================
+ * WHAT THIS FILE IS
+ *   The contact page. Combines a left info column (address, phone, WhatsApp,
+ *   email, hours) with a right working contact form, plus a Google Maps embed.
+ *
+ * WHAT IT DOES
+ *   Renders <ContactPage /> — a small PageHero, then a two-column section
+ *   (info + form). The form submits to Formspree (placeholder endpoint) with
+ *   four status states: idle / sending / success / error. A hidden honeypot
+ *   field traps spam bots. The service dropdown can be preselected via a
+ *   `?service=...` query string in the URL (used by the pricing page deep-links).
+ *   Below the form: a Google Maps iframe showing the office location.
+ *
+ * HOW IT FITS IN
+ *   - Exported as `ContactPage`, rendered by RouterOutlet when route === "contact".
+ *   - Reads `t.contact` for labels, `companyFacts` for phone/email/etc., and
+ *     `pageContent[lang].pages.contact` for hero + map title.
+ *   - The form's `service` field is preselected from the URL query string
+ *     (see `preselectedService` initializer below).
+ * =====================================================================
+ */
+
+import { useLang } from "@/lib/i18n/lang-context";
+import { pageContent } from "@/lib/i18n/page-content";
+import { PageHero } from "@/components/blocks/page-hero";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { useState } from "react";
+import {
+  MapPin,
+  Phone,
+  Mail,
+  MessageCircle,
+  Clock,
+  Send,
+  CheckCircle2,
+  AlertCircle,
+  Navigation,
+} from "lucide-react";
+import { companyFacts } from "@/lib/site-data";
+import { RouterLink } from "@/lib/router";
+
+/**
+ * ContactPage — top-level page component for the /contact route.
+ *
+ * Inputs: none (reads everything from context + URL).
+ * Returns: a React fragment with PageHero + info/form section + map section.
+ *
+ * State:
+ *   - `status`: "idle" | "sending" | "success" | "error" — drives the submit
+ *     button's label and disabled state, plus the error banner.
+ *   - `preselectedService`: optional string parsed from the URL query string
+ *     on first render. Used as the `defaultValue` of the service <Select>.
+ *
+ * Hooks: useLang() → { t, lang }.
+ */
+export function ContactPage() {
+  const { t, lang } = useLang();
+  const p = pageContent[lang].pages.contact;
+  // Form status: starts idle, transitions through sending → success/error.
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  // Lazy-initialize the preselected service from the URL hash query string.
+  // e.g. URL #/contact?service=Company%20Incorporation → preselectedService
+  //   = "Company Incorporation". The `typeof window === "undefined"` check
+  //   is a server-side-rendering guard (Next.js runs components on the server
+  //   first, where `window` doesn't exist).
+  const [preselectedService, setPreselectedService] = useState<string | undefined>(() => {
+    if (typeof window === "undefined") return undefined;
+    const hash = window.location.hash;
+    const qIndex = hash.indexOf("?");
+    if (qIndex === -1) return undefined;
+    const params = new URLSearchParams(hash.slice(qIndex + 1));
+    const svc = params.get("service");
+    return svc ? decodeURIComponent(svc) : undefined;
+  });
+
+  /**
+   * onSubmit — async form submit handler.
+   *
+   * Inputs: the form submit event.
+   * Flow:
+   *   1. Prevent the default browser form POST.
+   *   2. Build a FormData object from the form fields.
+   *   3. Honeypot check: if the hidden `_gotcha` field has any value, a bot
+   *      filled it in — pretend success and abort (don't actually send).
+   *   4. Set status to "sending", POST the FormData to Formspree.
+   *   5. On 2xx response: set status to "success", reset the form, revert to
+   *      "idle" after 5 seconds.
+   *   6. On non-2xx or network error: set status to "error".
+   */
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    // Honeypot check — if filled, silently abort (likely a bot)
+    const honeypot = formData.get("_gotcha");
+    if (honeypot) {
+      // pretend success so the bot moves on
+      setStatus("success");
+      form.reset();
+      setTimeout(() => setStatus("idle"), 4000);
+      return;
+    }
+
+    setStatus("sending");
+
+    try {
+      // Form endpoint — set NEXT_PUBLIC_FORMSPREE_ENDPOINT in your .env or Vercel env vars.
+      // Sign up at https://formspree.io to get your own endpoint (looks like https://formspree.io/f/abcd1234).
+      // Until you set this, the form will fail gracefully and show the error message.
+      const endpoint =
+        process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT || "https://formspree.io/f/your-form-id";
+      const res = await fetch(endpoint, {
+        method: "POST",
+        body: formData,
+        headers: { Accept: "application/json" },
+      });
+
+      if (res.ok) {
+        setStatus("success");
+        form.reset();
+        setTimeout(() => setStatus("idle"), 5000);
+      } else {
+        // Real failure — show error so user knows to retry or email us directly
+        setStatus("error");
+      }
+    } catch {
+      // Network error — show error
+      setStatus("error");
+    }
+  }
+
+  // Array of contact info items rendered in the left column. Each has a Lucide
+  // icon, a label, a value, and an optional `href` (makes the value clickable).
+  const infoItems = [
+    { icon: MapPin, label: t.contact.info.addressLabel, value: t.contact.info.address },
+    { icon: Phone, label: t.contact.info.phoneLabel, value: companyFacts.phone, href: `tel:${companyFacts.phone.replace(/\s/g, "")}` },
+    {
+      icon: MessageCircle,
+      label: t.contact.info.whatsappLabel,
+      value: t.topbar.whatsapp,
+      href: companyFacts.whatsappUrl,
+    },
+    {
+      icon: Mail,
+      label: t.contact.info.emailLabel,
+      value: companyFacts.email,
+      href: `mailto:${companyFacts.email}`,
+    },
+    { icon: Clock, label: t.contact.info.hoursLabel, value: t.contact.info.hours },
+  ];
+
+  return (
+    <>
+      {/* PAGE HERO: small-height dark image banner with eyebrow, H1, and lead. */}
+      <PageHero
+        eyebrow={p.heroEyebrow}
+        title={p.heroTitle}
+        lead={p.heroLead}
+        image="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=2400&q=80"
+        height="sm"
+      />
+
+      {/* ===== INFO + FORM SECTION ===== */}
+      {/* Two-column layout: left (2 of 5 cols) is contact info; right (3 of 5)
+          is the contact form. The form is the primary conversion target so it
+          gets more width. */}
+      <section className="bg-white py-20 lg:py-24">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="grid gap-10 lg:grid-cols-5 lg:gap-12">
+            {/* Left: Info column — heading, intro paragraph, and a list of
+                contact info rows (icon + label + value, some clickable). */}
+            <div className="lg:col-span-2">
+              <h2 className="font-display text-2xl font-bold text-slate-900 sm:text-3xl">
+                {t.contact.info.addressLabel}
+              </h2>
+              <p className="mt-3 text-sm leading-relaxed text-slate-600">{p.mapBody}</p>
+
+              <div className="mt-8 space-y-5">
+                {infoItems.map((item, i) => {
+                  const Icon = item.icon;
+                  const content = item.href ? (
+                    <a
+                      href={item.href}
+                      target={item.href.startsWith("http") ? "_blank" : undefined}
+                      rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                      className="font-medium text-slate-900 transition hover:text-teal-700"
+                    >
+                      {item.value}
+                    </a>
+                  ) : (
+                    <span className="font-medium text-slate-900">{item.value}</span>
+                  );
+                  return (
+                    <div key={i} className="flex gap-4">
+                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-teal-50 text-teal-600 ring-1 ring-teal-100">
+                        <Icon className="h-5 w-5" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+                          {item.label}
+                        </div>
+                        <div className="mt-0.5 text-sm">{content}</div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Right: Form column — the contact form itself. */}
+            <div className="lg:col-span-3">
+              {/* The <form> element wires its submit event to `onSubmit`.
+                  `noValidate={false}` lets the browser run its built-in
+                  validation (required, type=email, etc.). */}
+              <form
+                onSubmit={onSubmit}
+                className="rounded-3xl border border-slate-200 bg-white p-6 shadow-xl shadow-slate-900/5 sm:p-8"
+                noValidate={false}
+              >
+                {/* First name + last name row (2 columns on sm+). */}
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <div>
+                    <label htmlFor="first_name" className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-slate-600">
+                      {t.contact.form.firstName}
+                    </label>
+                    <Input id="first_name" name="first_name" required autoComplete="given-name" placeholder="John" />
+                  </div>
+                  <div>
+                    <label htmlFor="last_name" className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-slate-600">
+                      {t.contact.form.lastName}
+                    </label>
+                    <Input id="last_name" name="last_name" required autoComplete="family-name" placeholder="Chan" />
+                  </div>
+                </div>
+
+                {/* Email + phone row (2 columns on sm+). */}
+                <div className="mt-4 grid gap-4 sm:grid-cols-2">
+                  <div>
+                    <label htmlFor="email" className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-slate-600">
+                      {t.contact.form.email}
+                    </label>
+                    <Input id="email" name="email" type="email" required autoComplete="email" placeholder="you@company.com" />
+                  </div>
+                  <div>
+                    <label htmlFor="phone" className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-slate-600">
+                      {t.contact.form.phone}
+                    </label>
+                    <Input id="phone" name="phone" type="tel" autoComplete="tel" placeholder="+852 9123 4567" />
+                  </div>
+                </div>
+
+                {/* Service dropdown — a shadcn/ui Select. `defaultValue` is set
+                    from `preselectedService` so deep-links from the pricing page
+                    can preselect a service option. */}
+                <div className="mt-4">
+                  <label htmlFor="service" className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-slate-600">
+                    {t.contact.form.service}
+                  </label>
+                  <Select name="service" defaultValue={preselectedService}>
+                    <SelectTrigger id="service" className="w-full">
+                      <SelectValue placeholder={t.contact.form.services[0]} />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {t.contact.form.services.map((s, i) => (
+                        <SelectItem key={i} value={s}>
+                          {s}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div className="mt-4">
+                  <label htmlFor="message" className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-slate-600">
+                    {t.contact.form.message}
+                  </label>
+                  <Textarea
+                    id="message"
+                    name="message"
+                    required
+                    rows={4}
+                    placeholder={t.contact.form.placeholder}
+                  />
+                </div>
+
+                {/* Honeypot field — a hidden input named `_gotcha`.
+                    Humans never see it (CSS `hidden` + `aria-hidden`), so they
+                    never fill it in. Bots that auto-fill all form fields will
+                    populate it, and `onSubmit` will detect that and silently
+                    abort the submission (pretending success). */}
+                <div className="hidden" aria-hidden="true">
+                  <label htmlFor="_gotcha">{t.contactExtra.honeypotLabel}</label>
+                  <input
+                    id="_gotcha"
+                    name="_gotcha"
+                    type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    className="hidden"
+                  />
+                </div>
+
+                {/* Submit button — label and icon change based on `status`.
+                    Disabled while sending or after success to prevent double-submits. */}
+                <Button
+                  type="submit"
+                  disabled={status === "sending" || status === "success"}
+                  className="btn-shimmer mt-6 w-full bg-gradient-to-r from-teal-500 to-teal-600 text-white shadow-md shadow-teal-500/25 hover:from-teal-600 hover:to-teal-700"
+                >
+                  {status === "sending" && (
+                    <>
+                      <span className="mr-2 h-3.5 w-3.5 animate-spin rounded-full border-2 border-white/30 border-t-white" />
+                      {t.contact.form.sending}
+                    </>
+                  )}
+                  {status === "success" && (
+                    <>
+                      <CheckCircle2 className="mr-2 h-4 w-4" />
+                      {t.contact.form.success}
+                    </>
+                  )}
+                  {status === "error" && (
+                    <>
+                      <AlertCircle className="mr-2 h-4 w-4" />
+                      {t.contact.form.submit}
+                    </>
+                  )}
+                  {(status === "idle") && (
+                    <>
+                      <Send className="mr-2 h-4 w-4" />
+                      {t.contact.form.submit}
+                    </>
+                  )}
+                </Button>
+
+                {/* Error banner — only shown when status is "error". Offers a
+                    mailto fallback so the user can still reach us. */}
+                {status === "error" && (
+                  <p className="mt-3 flex items-start gap-2 rounded-lg bg-rose-50 p-3 text-xs text-rose-700">
+                    <AlertCircle className="mt-0.5 h-3.5 w-3.5 shrink-0" />
+                    <span>
+                      {t.contactExtra.formError}{" "}
+                      <a href={`mailto:${companyFacts.email}`} className="font-semibold underline">
+                        {companyFacts.email}
+                      </a>
+                    </span>
+                  </p>
+                )}
+
+                <p className="mt-4 text-center text-xs text-slate-400">
+                  {t.contactExtra.privacyNotice}{" "}
+                  <RouterLink to="privacy" className="underline hover:text-teal-600">
+                    {t.contactExtra.privacyLink}
+                  </RouterLink>
+                  .
+                </p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== MAP ===== */}
+      {/* MAP SECTION: a card containing a header row (map title + "Open in
+          Google Maps" button) and a 420px-tall Google Maps <iframe> embed.
+          The iframe uses Google's free embed URL (no API key required). */}
+      <section className="bg-slate-50 pb-20 lg:pb-28">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+            <div className="flex items-center justify-between gap-4 border-b border-slate-100 bg-white px-6 py-5">
+              <div>
+                <h3 className="font-display text-xl font-bold text-slate-900">{p.mapTitle}</h3>
+                <p className="mt-1 text-sm text-slate-500">{t.contact.info.address}</p>
+              </div>
+              <Button
+                asChild
+                variant="outline"
+                className="border-teal-200 text-teal-700 hover:bg-teal-50"
+              >
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=88+Lockhart+Road+Wan+Chai+Hong+Kong"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Navigation className="mr-1.5 h-3.5 w-3.5" />
+                  {t.contactExtra.mapsButton}
+                </a>
+              </Button>
+            </div>
+            <div className="relative h-[420px] bg-slate-100">
+              <iframe
+                title="Smarthub Connect office location"
+                src="https://www.google.com/maps?q=88+Lockhart+Road+Wan+Chai+Hong+Kong&output=embed"
+                className="absolute inset-0 h-full w-full border-0"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}

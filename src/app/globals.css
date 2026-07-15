@@ -1,0 +1,412 @@
+/* =================================================================
+ * GLOBAL STYLESHEET — Smarthub Connect
+ * =================================================================
+ * WHAT THIS FILE IS:
+ *   The single global CSS file imported by `src/app/layout.tsx`. It
+ *   sets up Tailwind CSS, defines the brand colour palette, custom
+ *   utility classes, animations, and accessibility styles.
+ *
+ * WHAT IT DOES:
+ *   - Imports Tailwind CSS v4 and `tw-animate-css` (animation utilities)
+ *   - Wires up CSS variables to Tailwind theme tokens via `@theme inline`
+ *   - Defines the brand palette (teal + coral + cream) for light & dark
+ *   - Sets base styles (font smoothing, focus rings, skip link)
+ *   - Defines reusable utility classes (.glass-nav, .lift-card,
+ *     .btn-shimmer, .marquee-track, .reveal, .pulse-dot, etc.)
+ *   - Defines keyframe animations (marquee, pulse-dot)
+ *
+ * HOW IT FITS IN THE BIGGER PICTURE:
+ *   Every component can use Tailwind utility classes (bg-primary,
+ *   text-foreground, etc.) AND the custom classes defined here
+ *   (.glass-nav, .reveal, .lift-card). The palette tokens (--primary,
+ *   --accent, etc.) are referenced both by Tailwind utilities and by
+ *   the shadcn/ui components.
+ * ================================================================= */
+
+/* Tailwind v4 entrypoint — pulls in all of Tailwind's reset + utilities */
+@import "tailwindcss";
+/* Pre-built animation utilities (fade-in, slide-up, etc.) compatible with Tailwind v4 */
+@import "tw-animate-css";
+
+/* Custom variant: `dark:` utilities apply when an ancestor has class `.dark`.
+   This is the dark-mode strategy for shadcn/ui components. */
+@custom-variant dark (&:is(.dark *));
+
+/* -----------------------------------------------------------------
+ * THEME TOKEN MAPPING
+ * -----------------------------------------------------------------
+ * `@theme inline` maps Tailwind theme tokens (e.g. --color-primary) to
+ * the CSS variables we define below in `:root` and `.dark`. So when you
+ * write `bg-primary` in a component, Tailwind outputs
+ * `background-color: var(--primary)`. Changing the variable value in
+ * :root automatically restyles every component using `bg-primary`.
+ * ----------------------------------------------------------------- */
+@theme inline {
+  /* Background + foreground text — the page background and default text colour */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  /* Font stacks: `font-sans` for body, `font-display` for headings, `font-mono` for code */
+  --font-sans: var(--font-dm-sans-variable), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, monospace;
+  --font-display: var(--font-jakarta-variable), ui-sans-serif, system-ui, sans-serif;
+
+  /* Sidebar tokens (used by shadcn/ui Sidebar component) */
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+
+  /* Chart palette — 5 colours for shadcn/ui Charts */
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+
+  /* Focus ring + input border tokens (used by form controls) */
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+
+  /* Destructive colour — for delete buttons, error states */
+  --color-destructive: var(--destructive);
+
+  /* Accent + muted + secondary + primary surfaces (used by shadcn/ui Button,
+     Card, Badge, etc.) */
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+
+  /* Popover + card surface tokens */
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+
+  /* Border-radius scale — sm/md/lg/xl derived from a single --radius base */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+/* -----------------------------------------------------------------
+ * BRAND PALETTE — LIGHT MODE
+ * -----------------------------------------------------------------
+ * Smarthub Connect brand palette — bright & lively:
+ *   Primary:  Teal/Emerald (HK harbour vibe)
+ *   Accent:   Coral (warm CTA pop)
+ *   Warm cream backgrounds for sections
+ * These CSS variables are read by Tailwind via the @theme inline block
+ * above. Change them ONCE here and every component updates.
+ * ----------------------------------------------------------------- */
+:root {
+  /* Base border-radius for buttons, cards, etc. (0.875rem ≈ 14px) */
+  --radius: 0.875rem;
+
+  /* Page background + default text */
+  --background: #ffffff;
+  --foreground: #0f1f2e;
+
+  /* Card surface */
+  --card: #ffffff;
+  --card-foreground: #0f1f2e;
+
+  /* Popover (dropdown / dialog) surface */
+  --popover: #ffffff;
+  --popover-foreground: #0f1f2e;
+
+  /* Teal primary — bright, fresh */
+  --primary: #0d9488;
+  --primary-foreground: #ffffff;
+
+  /* Warm cream secondary */
+  --secondary: #fef7ed;
+  --secondary-foreground: #7c2d12;
+
+  /* Muted grey (used for hint text, disabled states) */
+  --muted: #f1f5f9;
+  --muted-foreground: #64748b;
+
+  /* Coral accent for CTAs */
+  --accent: #fb7185;
+  --accent-foreground: #1c1917;
+
+  /* Destructive (delete buttons, errors) */
+  --destructive: #dc2626;
+
+  /* Border + input border + focus ring */
+  --border: #e2e8f0;
+  --input: #e2e8f0;
+  --ring: #14b8a6;
+
+  /* Chart palette — 5 colours for data visualisations */
+  --chart-1: #0d9488;
+  --chart-2: #fb7185;
+  --chart-3: #f59e0b;
+  --chart-4: #3b82f6;
+  --chart-5: #8b5cf6;
+
+  /* Sidebar palette (used by shadcn/ui Sidebar component) */
+  --sidebar: #ffffff;
+  --sidebar-foreground: #0f1f2e;
+  --sidebar-primary: #0d9488;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f0fdfa;
+  --sidebar-accent-foreground: #0f1f2e;
+  --sidebar-border: #e2e8f0;
+  --sidebar-ring: #14b8a6;
+
+  /* Custom brand tokens — used directly by non-shadcn components for
+     gradients, hero overlays, etc. */
+  --brand-teal: #0d9488;
+  --brand-teal-dark: #0f766e;
+  --brand-teal-light: #5eead4;
+  --brand-teal-50: #f0fdfa;
+  --brand-teal-100: #ccfbf1;
+  --brand-coral: #fb7185;
+  --brand-coral-dark: #e11d48;
+  --brand-amber: #f59e0b;
+  --brand-cream: #fef7ed;
+  --brand-mint: #ecfdf5;
+  --brand-navy: #0f1f2e;
+}
+
+/* -----------------------------------------------------------------
+ * BRAND PALETTE — DARK MODE
+ * -----------------------------------------------------------------
+ * When the .dark class is on a parent (e.g. <html class="dark">),
+ * these variables override the :root values. The same Tailwind
+ * utilities (`bg-background`, `text-foreground`, etc.) automatically
+ * pick up the dark values.
+ * ----------------------------------------------------------------- */
+.dark {
+  --background: #0a1a26;
+  --foreground: #f1f5f9;
+  --card: #0f2435;
+  --card-foreground: #f1f5f9;
+  --popover: #0f2435;
+  --popover-foreground: #f1f5f9;
+  --primary: #14b8a6;
+  --primary-foreground: #0a1a26;
+  --secondary: #1e3a4a;
+  --secondary-foreground: #f1f5f9;
+  --muted: #1e3a4a;
+  --muted-foreground: #94a3b8;
+  --accent: #fb7185;
+  --accent-foreground: #f1f5f9;
+  --destructive: #f87171;
+  --border: #1e3a4a;
+  --input: #1e3a4a;
+  --ring: #14b8a6;
+}
+
+/* -----------------------------------------------------------------
+ * BASE LAYER — applied to every element / global typography
+ * -----------------------------------------------------------------
+ * `@layer base` ensures these styles have higher priority than
+ * Tailwind's own base styles but lower than utilities like `bg-red-500`.
+ * ----------------------------------------------------------------- */
+@layer base {
+  /* Apply default border colour + focus ring opacity to every element
+     so shadcn/ui components look consistent without per-component CSS. */
+  * {
+    @apply border-border outline-ring/50;
+  }
+  /* Body: brand background + foreground + optional font features
+     (cv11, ss01 enable nicer alternate glyphs in DM Sans). */
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "cv11", "ss01";
+  }
+  /* Headings use the display font (Plus Jakarta Sans) with tighter
+     letter-spacing for a more premium feel. */
+  h1, h2, h3, h4 {
+    font-family: var(--font-display), var(--font-geist-sans), sans-serif;
+    letter-spacing: -0.02em;
+  }
+
+  /* Keyboard focus styles — visible to keyboard users, invisible to mouse.
+     WCAG requires a visible focus indicator. We use a teal outline. */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible,
+  [tabindex]:focus-visible {
+    outline: 2px solid var(--brand-teal);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Skip-to-content link — hidden offscreen until focused, then slides
+     into view. Used by the <SkipLink> component in page.tsx. */
+  .skip-link {
+    position: absolute;
+    top: -100px;
+    left: 8px;
+    z-index: 100;
+    background: var(--brand-navy);
+    color: white;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: top 0.2s ease;
+  }
+  .skip-link:focus {
+    top: 8px;
+  }
+}
+
+/* -----------------------------------------------------------------
+ * SMOOTH SCROLL — anchor links and "scroll to top" feel polished
+ * -----------------------------------------------------------------
+ * scroll-padding-top leaves room for the sticky navbar when jumping
+ * to an anchor (otherwise the heading would hide under the nav).
+ * ----------------------------------------------------------------- */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
+
+/* -----------------------------------------------------------------
+ * SCROLL-REVEAL ANIMATION
+ * -----------------------------------------------------------------
+ * Add className="reveal" to any element to make it fade-up on scroll.
+ * A JS observer (typically in the page component) adds .is-visible
+ * when the element enters the viewport, triggering the transition.
+ * ----------------------------------------------------------------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* -----------------------------------------------------------------
+ * GRADIENT TEXT — teal gradient for accent headings
+ * -----------------------------------------------------------------
+ * The text background is a gradient; we clip it to the text shape
+ * with -webkit-background-clip: text and make the actual text fill
+ * transparent. Result: gradient-filled letters.
+ * ----------------------------------------------------------------- */
+.text-gradient-teal {
+  background: linear-gradient(135deg, #0d9488 0%, #14b8a6 50%, #5eead4 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* -----------------------------------------------------------------
+ * HERO OVERLAY — dark-to-teal gradient for hero image legibility
+ * -----------------------------------------------------------------
+ * Used as an overlay on top of hero background photos so white text
+ * stays readable. Goes from dark navy at top to teal at bottom.
+ * ----------------------------------------------------------------- */
+.hero-overlay {
+  background: linear-gradient(180deg,
+    rgba(15, 31, 46, 0.85) 0%,
+    rgba(15, 31, 46, 0.55) 50%,
+    rgba(13, 148, 136, 0.45) 100%);
+}
+
+/* -----------------------------------------------------------------
+ * GLASS NAV — frosted-glass effect for the sticky navbar
+ * -----------------------------------------------------------------
+ * backdrop-filter: blur creates the "frosted" look by blurring
+ * whatever is behind the element. saturate() boosts the colours.
+ * The `.scrolled` modifier increases opacity + adds a soft shadow
+ * once the user scrolls down (toggled via JS in the Navbar component).
+ * ----------------------------------------------------------------- */
+.glass-nav {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+}
+.glass-nav.scrolled {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 4px 20px -8px rgba(15, 31, 46, 0.08);
+}
+
+/* -----------------------------------------------------------------
+ * LIFT CARD — hover effect that lifts cards with a teal shadow
+ * -----------------------------------------------------------------
+ * Used on pricing cards, service cards, etc. On hover, the card
+ * translates up 6px and casts a soft teal-tinted shadow.
+ * ----------------------------------------------------------------- */
+.lift-card {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.lift-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 48px -16px rgba(13, 148, 136, 0.18);
+}
+
+/* -----------------------------------------------------------------
+ * SHIMMER BUTTON — diagonal light sweep on hover
+ * -----------------------------------------------------------------
+ * A pseudo-element (::after) holds a translucent white gradient that
+ * starts off-screen left, then sweeps across to the right on hover.
+ * Pure CSS effect — no JS needed.
+ * ----------------------------------------------------------------- */
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.btn-shimmer::after {
+  content: "";
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+  transition: left 0.6s ease;
+}
+.btn-shimmer:hover::after {
+  left: 100%;
+}
+
+/* -----------------------------------------------------------------
+ * MARQUEE — infinite horizontal scroll for partner logos / banners
+ * -----------------------------------------------------------------
+ * The track contains the children twice (doubled). Animating
+ * translateX from 0 to -50% creates a seamless infinite loop
+ * because the second copy fills in as the first scrolls out.
+ * ----------------------------------------------------------------- */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.marquee-track {
+  animation: marquee 30s linear infinite;
+}
+
+/* -----------------------------------------------------------------
+ * PULSE DOT — subtle "live" indicator (e.g. "available now" badge)
+ * -----------------------------------------------------------------
+ * Scales up + dims slightly, then back, on a 2s loop.
+ * ----------------------------------------------------------------- */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.15); }
+}
+.pulse-dot {
+  animation: pulse-dot 2s ease-in-out infinite;
+}

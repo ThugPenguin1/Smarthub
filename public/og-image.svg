@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f1f2e"/>
+      <stop offset="100%" stop-color="#0d9488"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#5eead4"/>
+      <stop offset="100%" stop-color="#fb7185"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <!-- decorative grid -->
+  <g opacity="0.08" stroke="#ffffff" stroke-width="1">
+    <line x1="0" y1="100" x2="1200" y2="100"/>
+    <line x1="0" y1="200" x2="1200" y2="200"/>
+    <line x1="0" y1="300" x2="1200" y2="300"/>
+    <line x1="0" y1="400" x2="1200" y2="400"/>
+    <line x1="0" y1="500" x2="1200" y2="500"/>
+    <line x1="200" y1="0" x2="200" y2="630"/>
+    <line x1="400" y1="0" x2="400" y2="630"/>
+    <line x1="600" y1="0" x2="600" y2="630"/>
+    <line x1="800" y1="0" x2="800" y2="630"/>
+    <line x1="1000" y1="0" x2="1000" y2="630"/>
+  </g>
+  <!-- Logo S mark -->
+  <g transform="translate(80, 80)">
+    <rect width="80" height="80" rx="16" fill="#0d9488"/>
+    <text x="40" y="56" text-anchor="middle" fill="#ffffff" font-family="Arial Black, sans-serif" font-size="44" font-weight="900">S</text>
+  </g>
+  <text x="180" y="135" fill="#ffffff" font-family="Arial, sans-serif" font-size="28" font-weight="700">Smarthub Connect</text>
+  <text x="180" y="160" fill="#94a3b8" font-family="Arial, sans-serif" font-size="14" letter-spacing="3">HONG KONG · WAN CHAI</text>
+
+  <!-- Headline -->
+  <text x="80" y="320" fill="#ffffff" font-family="Arial, sans-serif" font-size="76" font-weight="900">Your gateway to</text>
+  <text x="80" y="410" fill="url(#accent)" font-family="Arial, sans-serif" font-size="76" font-weight="900">Hong Kong business.</text>
+
+  <!-- Subtitle -->
+  <text x="80" y="475" fill="#cbd5e1" font-family="Arial, sans-serif" font-size="24">TCSP-licensed corporate services &amp; workspaces</text>
+
+  <!-- Footer badge -->
+  <g transform="translate(80, 530)">
+    <rect width="280" height="44" rx="22" fill="rgba(255,255,255,0.1)" stroke="rgba(94,234,212,0.4)" stroke-width="1"/>
+    <circle cx="24" cy="22" r="4" fill="#5eead4"/>
+    <text x="40" y="28" fill="#5eead4" font-family="Arial, sans-serif" font-size="14" font-weight="600">TCSP Licensed · TC006605</text>
+  </g>
+  <text x="380" y="558" fill="#94a3b8" font-family="Arial, sans-serif" font-size="14">smarthubc.com</text>
+</svg>

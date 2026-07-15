@@ -1,0 +1,8 @@
+# Smarthub Connect — robots.txt
+# Allow all crawlers full access
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://smarthubc.com/sitemap.xml
