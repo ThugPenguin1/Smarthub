@@ -111,7 +111,7 @@ export const translations = {
       phone: "+852 2383 3283",
       whatsapp: "WhatsApp 5501 3516",
       email: "hello@smarthubc.com",
-      licence: "TCSP Licensed · TC006605",
+      licence: "TCSP Licensed · TC010264",
     },
     // hero — homepage hero section: eyebrow tag, big headline (split
     // into `title` + `titleAccent` so the accent can be styled differently),
@@ -127,7 +127,7 @@ export const translations = {
       stats: [
         { num: "25+", label: "Years in Hong Kong" },
         { num: "1,200+", label: "Companies Served" },
-        { num: "TC006605", label: "TCSP Licensed" },
+        { num: "TC010264", label: "TCSP Licensed" },
         { num: "24/7", label: "Access Available" },
       ],
     },
@@ -143,7 +143,7 @@ export const translations = {
       points: [
         {
           title: "TCSP Licensed",
-          text: "Licensed by the Hong Kong Companies Registry as a Trust & Company Service Provider (TC006605).",
+          text: "Licensed by the Hong Kong Companies Registry as a Trust & Company Service Provider (TC010264).",
         },
         {
           title: "Wan Chai Grade-A Office",
@@ -450,7 +450,7 @@ export const translations = {
         disclosures: "Disclosures",
       },
       note:
-        "Smarthub Connect Limited is a Hong Kong Trust & Company Service Provider licensee (TC006605) and a member of the MCM Group of companies. This website is for informational purposes only and does not constitute an offer or solicitation in any jurisdiction where such would be unlawful.",
+        "Smarthub Connect Limited is a Hong Kong Trust & Company Service Provider licensee (TC010264) and a member of the MCM Group of companies. This website is for informational purposes only and does not constitute an offer or solicitation in any jurisdiction where such would be unlawful.",
       rights: "All rights reserved.",
     },
   },
@@ -464,7 +464,7 @@ export const translations = {
     meta: {
       title: "Smarthub Connect — 香港企業服務與工作空間",
       description:
-        "Smarthub Connect Limited 為香港持牌信託及公司服務供應商 (TCSP TC006605)，於灣仔提供公司成立、秘書合規、服務式辦公室、虛擬辦公室及會議室租賃。",
+        "Smarthub Connect Limited 為香港持牌信託及公司服務供應商 (TCSP TC010264)，於灣仔提供公司成立、秘書合規、服務式辦公室、虛擬辦公室及會議室租賃。",
     },
     nav: {
       about: "關於我們",
@@ -481,7 +481,7 @@ export const translations = {
       phone: "+852 2383 3283",
       whatsapp: "WhatsApp 5501 3516",
       email: "hello@smarthubc.com",
-      licence: "TCSP 持牌 · TC006605",
+      licence: "TCSP 持牌 · TC010264",
     },
     hero: {
       eyebrow: "香港 · 灣仔立足",
@@ -493,20 +493,20 @@ export const translations = {
       stats: [
         { num: "25+", label: "扎根香港年數" },
         { num: "1,200+", label: "服務公司數目" },
-        { num: "TC006605", label: "TCSP 持牌" },
+        { num: "TC010264", label: "TCSP 持牌" },
         { num: "24/7", label: "全天候通行" },
       ],
     },
     about: {
       eyebrow: "關於 Smarthub Connect",
       title: "成立、合規、辦公空間——一個夥伴搞掂。",
-      body: "自 2001 年起，Smarthub Connect 協助創業家、家族辦公室與跨國企業在香港設立與營運。我們是持牌信託及公司服務供應商 (TCSP TC006605)，提供公司成立、秘書、會計、審計與稅務服務，並於灣臣駱克道 88 號 25 樓設有甲級服務式辦公室、虛擬辦公室及會議室。",
+      body: "自 2001 年起，Smarthub Connect 協助創業家、家族辦公室與跨國企業在香港設立與營運。我們是持牌信託及公司服務供應商 (TCSP TC010264)，提供公司成立、秘書、會計、審計與稅務服務，並於灣臣駱克道 88 號 25 樓設有甲級服務式辦公室、虛擬辦公室及會議室。",
       body2:
         "我們屬於 MCM Group 生態系統，客戶可無縫接軌財富管理、金融科技與專業教育等姊妹公司服務——但 Smarthub 始終專注於最擅長的領域：確保您的香港業務合規、專業、辦公無憂。",
       points: [
         {
           title: "TCSP 持牌",
-          text: "獲香港公司註冊處發出信託及公司服務提供者牌照 (TC006605)。",
+          text: "獲香港公司註冊處發出信託及公司服務提供者牌照 (TC010264)。",
         },
         {
           title: "灣仔甲級寫字樓",
@@ -775,7 +775,7 @@ export const translations = {
         disclosures: "披露",
       },
       note:
-        "Smarthub Connect Limited 為香港持牌信託及公司服務供應商 (TC006605)，並為 MCM Group 集團成員。本網站僅供參考，不構成於任何不允許之司法管轄區的要約或招攬。",
+        "Smarthub Connect Limited 為香港持牌信託及公司服務供應商 (TC010264)，並為 MCM Group 集團成員。本網站僅供參考，不構成於任何不允許之司法管轄區的要約或招攬。",
       rights: "版權所有。",
     },
   },
@@ -789,7 +789,7 @@ export const translations = {
     meta: {
       title: "Smarthub Connect — 香港企业服务与工作空间",
       description:
-        "Smarthub Connect Limited 为香港持牌信托及公司服务供应商 (TCSP TC006605)，于湾仔提供公司成立、秘书合规、服务式办公室、虚拟办公室及会议室租赁。",
+        "Smarthub Connect Limited 为香港持牌信托及公司服务供应商 (TCSP TC010264)，于湾仔提供公司成立、秘书合规、服务式办公室、虚拟办公室及会议室租赁。",
     },
     nav: {
       about: "关于我们",
@@ -806,7 +806,7 @@ export const translations = {
       phone: "+852 2383 3283",
       whatsapp: "WhatsApp 5501 3516",
       email: "hello@smarthubc.com",
-      licence: "TCSP 持牌 · TC006605",
+      licence: "TCSP 持牌 · TC010264",
     },
     hero: {
       eyebrow: "香港 · 立足湾仔",
@@ -818,20 +818,20 @@ export const translations = {
       stats: [
         { num: "25+", label: "扎根香港年数" },
         { num: "1,200+", label: "服务公司数目" },
-        { num: "TC006605", label: "TCSP 持牌" },
+        { num: "TC010264", label: "TCSP 持牌" },
         { num: "24/7", label: "全天候通行" },
       ],
     },
     about: {
       eyebrow: "关于 Smarthub Connect",
       title: "成立、合规、办公空间——一个伙伴搞定。",
-      body: "自 2001 年起，Smarthub Connect 协助创业者、家族办公室与跨国企业在香港设立与运营。我们是持牌信托及公司服务供应商 (TCSP TC006605)，提供公司成立、秘书、会计、审计与税务服务，并于湾仔骆克道 88 号 25 楼设有甲级服务式办公室、虚拟办公室及会议室。",
+      body: "自 2001 年起，Smarthub Connect 协助创业者、家族办公室与跨国企业在香港设立与运营。我们是持牌信托及公司服务供应商 (TCSP TC010264)，提供公司成立、秘书、会计、审计与税务服务，并于湾仔骆克道 88 号 25 楼设有甲级服务式办公室、虚拟办公室及会议室。",
       body2:
         "我们属于 MCM Group 生态系统，客户可无缝接轨财富管理、金融科技与专业教育等姊妹公司服务——但 Smarthub 始终专注於最擅长的领域：确保您的香港业务合规、专业、办公无忧。",
       points: [
         {
           title: "TCSP 持牌",
-          text: "获香港公司注册处发出信托及公司服务提供者牌照 (TC006605)。",
+          text: "获香港公司注册处发出信托及公司服务提供者牌照 (TC010264)。",
         },
         {
           title: "湾仔甲级写字楼",
@@ -1100,7 +1100,7 @@ export const translations = {
         disclosures: "披露",
       },
       note:
-        "Smarthub Connect Limited 为香港持牌信托及公司服务供应商 (TC006605)，并为 MCM Group 集团成员。本网站仅供参考，不构成于任何不允许之司法管辖区的要约或招揽。",
+        "Smarthub Connect Limited 为香港持牌信托及公司服务供应商 (TC010264)，并为 MCM Group 集团成员。本网站仅供参考，不构成于任何不允许之司法管辖区的要约或招揽。",
       rights: "版权所有。",
     },
   },

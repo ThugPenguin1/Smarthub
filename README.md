@@ -25,7 +25,7 @@ These items require the boss's input or external service setup. None of them can
 
 | Item | Where to update | Current placeholder |
 |---|---|---|
-| **Real TCSP licence number** | `src/lib/site-data.ts` → `tcspLicence` | `TC006605` (verify on [cr.gov.hk](https://www.cr.gov.hk)) |
+| **Real TCSP licence number** | `src/lib/site-data.ts` → `tcspLicence` | `TC010264` (verify on [cr.gov.hk](https://www.cr.gov.hk)) |
 | **Real phone number** | `src/lib/site-data.ts` → `phone` | `+852 2383 3283` |
 | **Real WhatsApp number** | `src/lib/site-data.ts` → `whatsapp`, `whatsappUrl` | `+852 5501 3516` |
 | **Real email** | `src/lib/site-data.ts` → `email` | `hello@smarthubc.com` |

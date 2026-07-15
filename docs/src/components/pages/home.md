@@ -10,7 +10,7 @@
 
 ## What It Produces
 The visitor sees, from top to bottom:
-1. **Hero** — a full-height Wan Chai skyline photo with a dark teal gradient overlay. On top: a small eyebrow pill with a pulsing dot, a big white headline with a teal-gradient accent word, a lead paragraph, two buttons ("Explore services" → `/services`, "Get in touch" → `/contact`), three trust badges (TCSP license, address, MCM Group), and a bottom stats strip (25+ years, 1,200+ companies, TC006605, 24/7).
+1. **Hero** — a full-height Wan Chai skyline photo with a dark teal gradient overlay. On top: a small eyebrow pill with a pulsing dot, a big white headline with a teal-gradient accent word, a lead paragraph, two buttons ("Explore services" → `/services`, "Get in touch" → `/contact`), three trust badges (TCSP license, address, MCM Group), and a bottom stats strip (25+ years, 1,200+ companies, TC010264, 24/7).
 2. **Intro Band** — white section with a left text column (eyebrow, headline, paragraph, "Learn more" button to `/about`) and a right 2×2 stats grid.
 3. **Services Preview** — 4 image cards (one per service), each linking to `/services`.
 4. **Why Hong Kong Preview** — dark image-overlaid band with text on the left and a 2×2 glass-tile grid on the right, plus a button to `/why-hk`.

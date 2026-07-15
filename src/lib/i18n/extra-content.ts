@@ -163,7 +163,7 @@ export const extraContent = {
         title: "Complaints Procedure",
         updated: "Last updated: July 2026",
         intro:
-          "Smarthub Connect Limited is a licensed Trust and Company Service Provider (TCSP, licence no. TC006605) regulated by the Hong Kong Companies Registry. We are committed to providing high-quality service and to handling complaints promptly, fairly, and transparently.",
+          "Smarthub Connect Limited is a licensed Trust and Company Service Provider (TCSP, licence no. TC010264) regulated by the Hong Kong Companies Registry. We are committed to providing high-quality service and to handling complaints promptly, fairly, and transparently.",
         sections: [
           {
             h: "1. How to Make a Complaint",
@@ -199,7 +199,7 @@ export const extraContent = {
         sections: [
           {
             h: "Smarthub Connect Limited",
-            p: "Hong Kong Trust and Company Service Provider licensee (TCSP licence no. TC006605). Provides corporate incorporation, company secretarial, registered address, serviced office, virtual office, and meeting room services. Registered office: 25/F, 88 Lockhart Road, Wan Chai, Hong Kong.",
+            p: "Hong Kong Trust and Company Service Provider licensee (TCSP licence no. TC010264). Provides corporate incorporation, company secretarial, registered address, serviced office, virtual office, and meeting room services. Registered office: 25/F, 88 Lockhart Road, Wan Chai, Hong Kong.",
           },
           {
             h: "MCM Group Ecosystem",
@@ -341,7 +341,7 @@ export const extraContent = {
         title: "投訴程序",
         updated: "最後更新：2026 年 7 月",
         intro:
-          "Smarthub Connect Limited 為香港持牌信託及公司服務供應商 (TCSP，牌照號碼 TC006605)，受香港公司註冊處規管。我哋致力提供高質素服務，並迅速、公平、透明咁處理投訴。",
+          "Smarthub Connect Limited 為香港持牌信託及公司服務供應商 (TCSP，牌照號碼 TC010264)，受香港公司註冊處規管。我哋致力提供高質素服務，並迅速、公平、透明咁處理投訴。",
         sections: [
           {
             h: "1. 點樣投訴",
@@ -377,7 +377,7 @@ export const extraContent = {
         sections: [
           {
             h: "Smarthub Connect Limited",
-            p: "香港持牌信託及公司服務供應商 (TCSP 牌照號碼 TC006605)。提供公司成立、公司秘書、註冊地址、服務式辦公室、虛擬辦公室同會議室服務。註冊辦事處：香港灣仔駱克道 88 號 25 樓。",
+            p: "香港持牌信託及公司服務供應商 (TCSP 牌照號碼 TC010264)。提供公司成立、公司秘書、註冊地址、服務式辦公室、虛擬辦公室同會議室服務。註冊辦事處：香港灣仔駱克道 88 號 25 樓。",
           },
           {
             h: "MCM Group 生態系統",
@@ -519,7 +519,7 @@ export const extraContent = {
         title: "投诉程序",
         updated: "最后更新：2026 年 7 月",
         intro:
-          "Smarthub Connect Limited 为香港持牌信托及公司服务供应商 (TCSP，牌照号码 TC006605)，受香港公司注册处规管。我们致力提供高质素服务，并迅速、公平、透明地处理投诉。",
+          "Smarthub Connect Limited 为香港持牌信托及公司服务供应商 (TCSP，牌照号码 TC010264)，受香港公司注册处规管。我们致力提供高质素服务，并迅速、公平、透明地处理投诉。",
         sections: [
           {
             h: "1. 如何投诉",
@@ -555,7 +555,7 @@ export const extraContent = {
         sections: [
           {
             h: "Smarthub Connect Limited",
-            p: "香港持牌信托及公司服务供应商 (TCSP 牌照号码 TC006605)。提供公司成立、公司秘书、注册地址、服务式办公室、虚拟办公室与会议室服务。注册办事处：香港湾仔骆克道 88 号 25 楼。",
+            p: "香港持牌信托及公司服务供应商 (TCSP 牌照号码 TC010264)。提供公司成立、公司秘书、注册地址、服务式办公室、虚拟办公室与会议室服务。注册办事处：香港湾仔骆克道 88 号 25 楼。",
           },
           {
             h: "MCM Group 生态系统",

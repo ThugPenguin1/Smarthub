@@ -100,7 +100,7 @@ export function AboutPage() {
                   <ShieldCheck className="h-8 w-8 text-teal-600" />
                   <div>
                     <div className="font-display text-sm font-bold text-slate-900">
-                      TCSP Licensed · TC006605
+                      TCSP Licensed · TC010264
                     </div>
                     <div className="text-xs text-slate-500">
                       Hong Kong Companies Registry

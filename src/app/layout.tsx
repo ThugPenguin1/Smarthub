@@ -169,7 +169,7 @@ const jsonLd = {
   areaServed: { "@type": "Country", name: "Hong Kong" },
   knowsLanguage: ["en", "zh-Hant", "zh-Hans"],
   foundingDate: companyFacts.founded,
-  license: "TCSP TC006605",
+  license: "TCSP TC010264",
   sameAs: [],
 };
 

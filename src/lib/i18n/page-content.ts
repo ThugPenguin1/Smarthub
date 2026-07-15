@@ -64,7 +64,7 @@ export const pageContent = {
         storyTitle: "Built for Hong Kong. Built for the long term.",
         storyBody: [
           "Smarthub Connect Limited was founded in 2001 as the corporate services and workspace arm of MCM Group. From day one, the mission was simple: give entrepreneurs, family offices and multinationals a single, reliable partner for everything required to operate in Hong Kong.",
-          "Over 25 years we have incorporated more than 1,200 Hong Kong and offshore companies, served thousands of workspace clients, and built a bilingual team that speaks English, Cantonese and Mandarin fluently. We hold TCSP licence TC006605 and operate from a Grade-A floor at 25/F, 88 Lockhart Road, Wan Chai — two minutes from the MTR.",
+          "Over 25 years we have incorporated more than 1,200 Hong Kong and offshore companies, served thousands of workspace clients, and built a bilingual team that speaks English, Cantonese and Mandarin fluently. We hold TCSP licence TC010264 and operate from a Grade-A floor at 25/F, 88 Lockhart Road, Wan Chai — two minutes from the MTR.",
           "What makes us different is what we don't do: we don't outsource core services, we don't take referral commissions, and we don't pass you between vendors. Your relationship director at Smarthub coordinates every discipline in-house — corporate, workspace, accounting and compliance.",
         ],
         valuesEyebrow: "What We Stand For",
@@ -72,7 +72,7 @@ export const pageContent = {
         values: [
           {
             title: "Licensed & Accountable",
-            text: "TCSP-licensed (TC006605). We carry the regulatory responsibility — we don't outsource it.",
+            text: "TCSP-licensed (TC010264). We carry the regulatory responsibility — we don't outsource it.",
           },
           {
             title: "In-House Execution",
@@ -249,7 +249,7 @@ export const pageContent = {
         storyTitle: "為香港而建。為長遠而建。",
         storyBody: [
           "Smarthub Connect Limited 於 2001 年成立，為 MCM Group 旗下企業服務與工作空間臂膀。成立之初，使命簡單：為創業家、家族辦公室與跨國企業提供單一、可靠的香港營運夥伴。",
-          "25 年來，我哋成立咗超過 1,200 間香港及離岸公司，服務數千工作空間客戶，建立咗流利使用英語、粵語同普通話嘅雙語團隊。我哋持有 TCSP 牌照 TC006605，於灣仔駱克道 88 號 25 樓甲級樓層營運——港鐵兩分鐘即達。",
+          "25 年來，我哋成立咗超過 1,200 間香港及離岸公司，服務數千工作空間客戶，建立咗流利使用英語、粵語同普通話嘅雙語團隊。我哋持有 TCSP 牌照 TC010264，於灣仔駱克道 88 號 25 樓甲級樓層營運——港鐵兩分鐘即達。",
           "我哋嘅分別在於我哋唔做嘅嘢：唔外判核心服務、唔收轉介佣金、唔將您喺供應商之間傳遞。您嘅關係董事喺 Smarthub 內部協調所有紀律——企業、工作空間、會計同合規。",
         ],
         valuesEyebrow: "我們信甚麼",
@@ -257,7 +257,7 @@ export const pageContent = {
         values: [
           {
             title: "持牌問責",
-            text: "持牌 TCSP (TC006605)。我哋承擔監管責任——唔外判。",
+            text: "持牌 TCSP (TC010264)。我哋承擔監管責任——唔外判。",
           },
           {
             title: "內部執行",
@@ -414,7 +414,7 @@ export const pageContent = {
         storyTitle: "为香港而建。为长远而建。",
         storyBody: [
           "Smarthub Connect Limited 于 2001 年成立，为 MCM Group 旗下企业服务与工作空间臂膀。成立之初，使命简单：为创业者、家族办公室与跨国企业提供单一、可靠的香港营运伙伴。",
-          "25 年来，我们成立了超过 1,200 间香港及离岸公司，服务数千工作空间客户，建立了流利使用英语、粤语与普通话的双语团队。我们持有 TCSP 牌照 TC006605，于湾仔骆克道 88 号 25 楼甲级楼层营运——地铁两分钟即达。",
+          "25 年来，我们成立了超过 1,200 间香港及离岸公司，服务数千工作空间客户，建立了流利使用英语、粤语与普通话的双语团队。我们持有 TCSP 牌照 TC010264，于湾仔骆克道 88 号 25 楼甲级楼层营运——地铁两分钟即达。",
           "我们的分别在于我们不做的事：不外判核心服务、不收转介佣金、不将您在供应商之间传递。您的关系董事在 Smarthub 内部协调所有纪律——企业、工作空间、会计与合规。",
         ],
         valuesEyebrow: "我们信什么",
@@ -422,7 +422,7 @@ export const pageContent = {
         values: [
           {
             title: "持牌问责",
-            text: "持牌 TCSP (TC006605)。我们承担监管责任——不外判。",
+            text: "持牌 TCSP (TC010264)。我们承担监管责任——不外判。",
           },
           {
             title: "内部执行",

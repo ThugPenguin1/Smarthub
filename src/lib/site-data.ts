@@ -37,7 +37,7 @@ import { Lang } from "./i18n/translations";
 
 /**
  * StatItem — the shape of a single statistic shown on the page.
- *   - `num`   : the big bold number/label (e.g. "25+", "TC006605")
+ *   - `num`   : the big bold number/label (e.g. "25+", "TC010264")
  *   - `label` : the small caption underneath (e.g. "Years in Hong Kong")
  */
 export type StatItem = { num: string; label: string };
@@ -55,19 +55,19 @@ export const heroStats: Record<Lang, StatItem[]> = {
   en: [
     { num: "25+", label: "Years in Hong Kong" },
     { num: "1,200+", label: "Companies Served" },
-    { num: "TC006605", label: "TCSP Licensed" },
+    { num: "TC010264", label: "TCSP Licensed" },
     { num: "24/7", label: "Access Available" },
   ],
   "zh-HK": [
     { num: "25+", label: "扎根香港年數" },
     { num: "1,200+", label: "服務公司數目" },
-    { num: "TC006605", label: "TCSP 持牌" },
+    { num: "TC010264", label: "TCSP 持牌" },
     { num: "24/7", label: "全天候通行" },
   ],
   "zh-CN": [
     { num: "25+", label: "扎根香港年数" },
     { num: "1,200+", label: "服务公司数目" },
-    { num: "TC006605", label: "TCSP 持牌" },
+    { num: "TC010264", label: "TCSP 持牌" },
     { num: "24/7", label: "全天候通行" },
   ],
 };
@@ -136,7 +136,7 @@ export const sectionStats: Record<Lang, StatItem[]> = {
 export const companyFacts = {
   legalName: "Smarthub Connect Limited",
   shortName: "Smarthub Connect",
-  tcspLicence: "TC006605",
+  tcspLicence: "TC010264",
   phone: "+852 2383 3283",
   whatsapp: "+852 5501 3516",
   whatsappUrl: "https://wa.me/85255013516",
